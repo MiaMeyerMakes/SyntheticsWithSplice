@@ -53,4 +53,12 @@ Supporting parameters:
 
 When simulating claims, two of the most important things to consider are the claim severity and claim frequency. These two elements will be simulated using different distributions.
 
-The claim frequencies are simulated using a Poisson distribution. So suppose you have 6 years (24 quarters), you can simulate the amount of claims that occur in every quarter using `claim_frequency()` and get the 'timestamps' of these claims using
+**Claim frequency:** The claim frequencies are simulated using a Poisson distribution. So suppose you have 6 years (24 quarters), you can simulate the amount of claims that occur in every quarter using `claim_frequency()` and get the 'time-stamps' of these claims using `claim_occurence()`.
+
+**Claim size:** Thereafter, the claim sizes are simulated according to a lognormal distribution, using `claim_size()`.
+
+**Claim notification delay:** Further, the notification of the claim delay does not occur immediately, which leads to a delay. This notification delay is accounted for by using a weibull distribution and the `claim_notification()` function. The mean delay is $1$ day.
+
+**Claim closure delay:** After the claim notification comes, there is another delay before the claim is settled. This delay is simulated using the `claim_closure()` function. This delay is also assumed to have a weibull distribution with a mean of $2$.
+
+**Claim settlement payments:** Now, the claims are not usually settled with a single lump sum. The number of payments it takes to settle a claim is assumed to have a geometric distribution with a mean number of payments per claim being $1.8$ in the function `claim_payment_no()`. But in order to ensure that there is at least 1 payment per claim, change all the nr. of payments that are simulated to be 0 to 1. The size of these different payments are simulated using `claim_payment_size`, which returns a vector with the payment delay pattern for each of the claims and occurrence periods. Thereafter the delays between the payments and the resulting time stamps are simulated using `claim_payment_delay()` and `claim_payment_time()`.
