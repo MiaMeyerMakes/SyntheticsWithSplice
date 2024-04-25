@@ -274,7 +274,7 @@ dataStartDate = as.Date(paste0(year(valuationDate) - triangleDimension/triangleP
 
 # portfolio parameters
 numPolicies = rep(10000, triangleDimension) # policies per year
-claimFreq = rep(0.1, triangleDimension) # yearly claim frequency
+claimFreq = rep(0.3, triangleDimension) # yearly claim frequency
 baseInflation = rep(1.02^(1/4) - 1, (triangleDimension+2*trianglePeriodicity)*2) 
 # quarterly inflation rate at 2%. Ensure vector is more than long enough (unsure why)
 
