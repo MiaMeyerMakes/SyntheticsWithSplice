@@ -257,6 +257,8 @@ claims_Large = generate_claim_dataset(frequency, occurrence, size, notification,
   .[, class := class] %>% 
   .[, resgroup := resgroup]
 
+transactionsLarge = generate_transaction_dataset(claimsFull)
+
 ############### small claims, quick settlement, high frequency  ###########
 
 set.seed(1)
@@ -383,7 +385,12 @@ claims_Small = generate_claim_dataset(frequency, occurrence, size, notification,
   .[, class := class] %>% 
   .[, resgroup := resgroup]
 
+transactionsSmall = generate_transaction_dataset(claimsFull)
+
 ################# EXPORT TO CSV  ###############################################
 
 write.csv(claims_Large, file = "C:/Users/Mia.Meyer/OneDrive - Dynamo Analytics/Desktop/Work/Stephan Article/largeClaims.csv")
 write.csv(claims_Small, file = "C:/Users/Mia.Meyer/OneDrive - Dynamo Analytics/Desktop/Work/Stephan Article/smallClaims.csv")
+
+write.csv(transactionsLarge, file = "C:/Users/Mia.Meyer/OneDrive - Dynamo Analytics/Desktop/Work/Stephan Article/largeClaimsTransacts.csv")
+write.csv(transactionsSmall, file = "C:/Users/Mia.Meyer/OneDrive - Dynamo Analytics/Desktop/Work/Stephan Article/smallClaimsTransacts.csv")
